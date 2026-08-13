@@ -212,7 +212,7 @@ function Header({ mode, onModeChange }: { mode: Mode; onModeChange: (m: Mode) =>
       <div className="flex items-center gap-3">
         <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary p-2 shadow-sm">
           <Image
-            src="/fav_icon.png"
+            src="/e-commerce-audit-dashboard/fav_icon.png"
             alt="Agent Readiness Logo"
             width={28}
             height={28}
