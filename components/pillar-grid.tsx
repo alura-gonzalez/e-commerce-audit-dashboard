@@ -87,7 +87,6 @@ export function PillarGrid({ interpretability, executability, reliability }: Pil
 
                   {/* GLOBO FLOTANTE */}
                   <div className="pointer-events-none absolute bottom-full left-0 mb-2 hidden w-72 rounded-xl border border-border bg-popover p-3.5 text-xs font-normal leading-relaxed text-popover-foreground shadow-lg transition-all group-hover:pointer-events-auto group-hover:block z-50">
-                    <p className="mb-1 font-semibold text-foreground">Why it matters for audit:</p>
                     <p className="text-muted-foreground">
                       {PILLAR_WHY[pillar.name] || "Critical dimension for evaluating agent compatibility."}
                     </p>

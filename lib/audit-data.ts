@@ -1,4 +1,27 @@
-export const demoAudit = {
+export type FindingCategory = "Code" | "UI/UX";
+
+export interface Finding {
+  type: "error" | "warning" | "info";
+  category: FindingCategory;
+  description: string;
+  suggestion: string;
+}
+
+export interface AuditResult {
+  company_name: string;
+  audited_url: string;
+  audited_at: string;
+  sector: string;
+  avg_monthly_visits: string;
+  score: number;
+  status_label: string;
+  interpretability_pass: boolean;
+  executability_pass: boolean;
+  reliability_pass: boolean;
+  findings: Finding[];
+}
+
+export const demoAudit: AuditResult = {
   "company_name": "MANGO",
   "audited_url": "https://shop.mango.com/mx/es/p/mujer/camisetas/basicas/camiseta-100-algodon-cuello-redondo/37091331/37/00",
   "audited_at": "2026-08-12",
