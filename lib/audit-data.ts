@@ -1,4 +1,4 @@
-{
+export const demoAudit = {
   "company_name": "MANGO",
   "audited_url": "https://shop.mango.com/mx/es/p/mujer/camisetas/basicas/camiseta-100-algodon-cuello-redondo/37091331/37/00",
   "audited_at": "2026-08-12",
@@ -35,4 +35,4 @@
       "suggestion": "Use a fieldset and legend or an equivalent labelled group, and update aria-selected or aria-pressed on the chosen size while exposing the selected color and size in accessible state text."
     }
   ]
-}
+};
