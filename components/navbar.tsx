@@ -6,7 +6,7 @@ export function Navbar() {
       <header className="w-full max-w-7xl bg-white rounded-full p-2 flex justify-between items-center [box-shadow:0px_4px_0px_0px_rgba(0,0,0,0.15)]">
         <div className="flex items-center">
           <a href="https://www.aluragonzalez.com" className="flex items-center gap-3 px-4 hover:opacity-80 transition-opacity">
-            <img src="/e-commerce-audit-dashboard/seedling-fill.svg" alt="Icono" className="w-6 h-6 object-contain" />
+            <img src="/seedling-fill.svg" alt="Icono" className="w-6 h-6 object-contain" />
             <span className="font-extrabold text-lg tracking-tight">Laura González</span>
           </a>
         </div>
