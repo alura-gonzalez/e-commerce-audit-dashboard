@@ -59,7 +59,7 @@ export function FindingsFeed({ findings, auditedAt }: FindingsFeedProps) {
       {/* FILA 2: Fecha a la izquierda | Filtros a la derecha (acercados a los hallazgos) */}
       <div className="flex flex-wrap items-center justify-between gap-3 mb-2">
         {/* Badge de Fecha sin ícono de refresh */}
-        <div className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground shadow-sm">
+        <div className="inline-flex items-center gap-2 rounded-xl bg-card px-3.5 py-2 text-sm font-medium text-foreground">
           <Calendar className="h-4 w-4 text-muted-foreground stroke-[1.75]" />
           <span>Last Update, {auditedAt || "2026-08-11"}</span>
         </div>
@@ -68,7 +68,7 @@ export function FindingsFeed({ findings, auditedAt }: FindingsFeedProps) {
         <div
           role="tablist"
           aria-label="Filter findings by category"
-          className="inline-flex items-center gap-1 rounded-xl border border-border bg-card p-1 shadow-sm"
+          className="inline-flex items-center gap-1 rounded-full bg-card p-1"
         >
           {FILTERS.map((f) => (
             <button
@@ -79,7 +79,7 @@ export function FindingsFeed({ findings, auditedAt }: FindingsFeedProps) {
               onClick={() => setFilter(f)}
               className={`inline-flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-sm font-medium transition ${
                 filter === f
-                  ? "bg-primary text-primary-foreground shadow-sm"
+                  ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -106,7 +106,7 @@ export function FindingsFeed({ findings, auditedAt }: FindingsFeedProps) {
           ))}
         </ul>
       ) : (
-        <p className="rounded-xl border border-dashed border-border bg-card/50 px-4 py-8 text-center text-sm text-muted-foreground">
+        <p className="rounded-3xl border border-dashed border-border bg-card/50 px-4 py-8 text-center text-sm text-muted-foreground">
           No {filter} findings for this page.
         </p>
       )}
@@ -119,7 +119,7 @@ function CategoryBadge({ category }: { category: FindingCategory }) {
   const Icon = isUx ? Palette : Code2
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
+      className={`inline-flex items-center gap-1 rounded-lg px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
         isUx ? "bg-primary/10 text-primary" : "bg-secondary text-secondary-foreground"
       }`}
     >
@@ -134,14 +134,14 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
 
   return (
     <li
-      className={`overflow-hidden rounded-xl border bg-card shadow-sm ${
-        isError ? "border-l-4 border-l-danger border-border" : "border-l-4 border-l-warning border-border"
+      className={`overflow-hidden rounded-3xl bg-card ${
+        isError ? "border-l-4 border-l-danger" : "border-l-4 border-l-warning"
       }`}
     >
       <div className="flex flex-col gap-3 p-5">
         <div className="flex items-start gap-3">
           <div
-            className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
+            className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-3xl ${
               isError ? "bg-danger-muted text-danger" : "bg-warning-muted text-warning-foreground"
             }`}
           >
@@ -172,7 +172,7 @@ function FindingCard({ finding, index }: { finding: Finding; index: number }) {
         </div>
 
         {finding.suggestion && (
-          <div className="ml-11 flex gap-2.5 rounded-lg border border-border bg-muted/60 p-3.5">
+          <div className="ml-11 flex gap-2.5 rounded-2xl bg-muted/60 p-3.5">
             <Lightbulb className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">

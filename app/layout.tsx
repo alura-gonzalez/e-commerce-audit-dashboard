@@ -1,10 +1,19 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Plus_Jakarta_Sans, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-plus-jakarta',
+  weight: ['400', '500', '700', '800'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space-grotesk',
+  weight: ['400', '700'],
+})
 
 export const metadata: Metadata = {
   title: 'Agent-Readiness Audit',
@@ -26,15 +35,15 @@ export const metadata: Metadata = {
         type: 'image/svg+xml',
       },
     ],
-    apple: '/e-commerce-audit-dashboard/apple-icon.png',          
+    apple: '/e-commerce-audit-dashboard/apple-icon.png',
   },
 }
 
 export const viewport: Viewport = {
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { media: '(prefers-color-scheme: light)', color: '#f4f3ec' },
+    { media: '(prefers-color-scheme: dark)', color: '#1A1A1A' },
   ],
 }
 
@@ -44,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`bg-background ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`bg-background ${plusJakarta.variable} ${spaceGrotesk.variable}`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}

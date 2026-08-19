@@ -50,13 +50,13 @@ export function AuditDashboard() {
   }
 
   return (
-    <div className="mx-auto flex min-h-screen max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:py-12">
+    <div className="mx-auto flex min-h-screen max-w-5xl flex-col gap-8 px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       <Header mode={mode} onModeChange={setMode} />
 
       {mode === "live" && (
         <form
           onSubmit={runAudit}
-          className="flex flex-col gap-3 rounded-xl border border-border bg-card p-4 shadow-sm sm:flex-row sm:items-center"
+          className="flex flex-col gap-3 rounded-3xl border border-border bg-card p-4 shadow-[var(--shadow-flat-sm)] sm:flex-row sm:items-center"
         >
           <div className="relative flex-1">
             <Globe
@@ -73,13 +73,13 @@ export function AuditDashboard() {
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://store.example.com/product/..."
-              className="h-11 w-full rounded-lg border border-input bg-background pl-10 pr-3 text-sm text-foreground outline-none transition focus:border-ring focus:ring-2 focus:ring-ring/30"
+              className="h-11 w-full rounded-full border border-input bg-background pl-10 pr-4 text-sm font-medium text-foreground outline-none transition focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/30"
             />
           </div>
           <button
             type="submit"
             disabled={loading || !url.trim()}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-brand-dark px-7 text-sm font-bold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {loading ? (
               <>
@@ -105,8 +105,8 @@ export function AuditDashboard() {
 
       {result ? (
         <div className="flex flex-col gap-8">
-          <section className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border bg-border shadow-sm lg:grid-cols-2">
-            <div className="flex items-center justify-center bg-card p-6 sm:p-8">
+          <section className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-stretch">
+            <div className="flex h-full items-center justify-center rounded-3xl bg-readiness-bg p-6">
               <ScoreGauge score={result.score} statusLabel={result.status_label} />
             </div>
             <CompanyPanel
@@ -161,26 +161,26 @@ function CompanyPanel({
       : avgMonthlyVisits
 
   return (
-    <dl className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2">
+    <dl className="grid h-full grid-cols-1 gap-3 sm:grid-cols-2">
       <InfoCell icon={Building2} label="Company">
-        <span className="text-base font-semibold text-foreground">{name}</span>
+        <span className="text-base font-bold text-foreground">{name}</span>
       </InfoCell>
       <InfoCell icon={Tag} label="Sector">
-        <span className="text-base font-semibold text-foreground">{sector}</span>
+        <span className="text-base font-bold text-foreground">{sector}</span>
       </InfoCell>
       <InfoCell icon={Link2} label="Audited URL">
         <a
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="truncate text-sm font-medium text-primary underline-offset-2 hover:underline"
+          className="truncate text-sm font-medium text-brand-purple underline-offset-2 hover:underline"
           title={url}
         >
           {host}
         </a>
       </InfoCell>
       <InfoCell icon={TrendingUp} label="Avg. monthly visits">
-        <span className="font-mono text-base font-semibold tabular-nums text-foreground">{visits}</span>
+        <span className="font-mono text-base font-bold tabular-nums text-foreground">{visits}</span>
       </InfoCell>
     </dl>
   )
@@ -196,10 +196,10 @@ function InfoCell({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-w-0 flex-col gap-2 bg-card p-5 sm:p-6">
+    <div className="flex min-w-0 flex-col justify-center gap-1.5 rounded-3xl bg-card px-4 py-4">
       <div className="flex items-center gap-2 text-muted-foreground">
         <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
-        <dt className="text-xs font-medium uppercase tracking-widest">{label}</dt>
+        <dt className="text-xs font-bold uppercase tracking-wider">{label}</dt>
       </div>
       <dd className="min-w-0 truncate">{children}</dd>
     </div>
@@ -210,27 +210,18 @@ function Header({ mode, onModeChange }: { mode: Mode; onModeChange: (m: Mode) =>
   return (
     <header className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-3">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-primary p-2 shadow-sm">
-          <Image
-            src="/e-commerce-audit-dashboard/fav_icon.png"
-            alt="Agent Readiness Logo"
-            width={28}
-            height={28}
-            className="h-full w-full object-contain"
-          />
-        </div>
         <div>
-          <h1 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-            Agent-Readiness Audit
+          <h1 className="font-heading text-xl font-extrabold tracking-tight text-muted-foreground sm:text-2xl">
+            Agent-Readiness Dashboard
           </h1>
-          <p className="text-sm text-muted-foreground">Is your storefront ready for AI shopping agents?</p>
+          <p className="text-sm font-medium text-muted-foreground">Audited via Agent-Ready Framework</p>
         </div>
       </div>
 
       <div
         role="tablist"
         aria-label="Audit mode"
-        className="inline-flex shrink-0 items-center gap-1 self-start rounded-lg border border-border bg-card p-1 shadow-sm"
+        className="inline-flex shrink-0 items-center gap-1 self-start rounded-full bg-card p-1.5"
       >
         <ModeButton active={mode === "demo"} onClick={() => onModeChange("demo")} icon={Sparkles}>
           Demo
@@ -260,8 +251,8 @@ function ModeButton({
       role="tab"
       aria-selected={active}
       onClick={onClick}
-      className={`inline-flex items-center gap-1.5 rounded-md px-3.5 py-1.5 text-sm font-medium transition ${
-        active ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
+      className={`inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-bold transition ${
+        active ? "bg-brand-dark text-white" : "text-muted-foreground hover:text-brand-purple"
       }`}
     >
       <Icon className="h-4 w-4" aria-hidden="true" />
@@ -279,9 +270,9 @@ function EmptyState({
 }) {
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
-        <Loader2 className="h-8 w-8 animate-spin text-primary" aria-hidden="true" />
-        <p className="text-base font-semibold text-foreground">Running audit…</p>
+      <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
+        <Loader2 className="h-8 w-8 animate-spin text-brand-purple" aria-hidden="true" />
+        <p className="font-heading text-base font-extrabold text-foreground">Running audit…</p>
         <p className="max-w-sm text-pretty text-sm text-muted-foreground">
           Fetching agent-readiness signals from the target page.
         </p>
@@ -291,11 +282,11 @@ function EmptyState({
 
   if (hasSubmittedLive) {
     return (
-      <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
-        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-500">
+      <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-yellow/20 text-brand-dark">
           <Lock className="h-7 w-7" aria-hidden="true" />
         </div>
-        <p className="text-base font-semibold text-foreground">
+        <p className="font-heading text-base font-extrabold text-foreground">
           Protected section with usage limits
         </p>
         <p className="max-w-md text-pretty text-sm text-muted-foreground">
@@ -306,11 +297,11 @@ function EmptyState({
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-muted text-muted-foreground">
+    <div className="flex flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-border bg-card/50 px-6 py-20 text-center">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted text-muted-foreground">
         <ScanSearch className="h-7 w-7" aria-hidden="true" />
       </div>
-      <p className="text-base font-semibold text-foreground">No audit results yet</p>
+      <p className="font-heading text-base font-extrabold text-foreground">No audit results yet</p>
       <p className="max-w-sm text-pretty text-sm text-muted-foreground">
         Enter a product page URL above and run a live audit to see the results here.
       </p>
