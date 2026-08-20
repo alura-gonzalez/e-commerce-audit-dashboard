@@ -11,7 +11,7 @@ export function Navbar() {
           </a>
         </div>
         <nav className="hidden md:flex gap-8 font-medium text-base items-center">
-          <a href="https://www.aluragonzalez.com/#case-studies" className="hover:text-brand-purple transition-colors">Case Studies</a>
+          <a href="https://www.aluragonzalez.com/#caseStudies" className="hover:text-brand-purple transition-colors">Case Studies</a>
           <a href="https://www.aluragonzalez.com/#philosophy" className="hover:text-brand-purple transition-colors">Philosophy</a>
           <a href="https://www.aluragonzalez.com/#contact" className="hover:text-brand-purple transition-colors">Contact</a>
         </nav>
